@@ -1,4 +1,3 @@
-
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -7,6 +6,8 @@ const rl = readline.createInterface({
 });
 
 rl.question("Digite a potência de entrada em dBm: ", function (sinalOlt) {
+
+const quantosKM = 4
 
     console.log(`Sinal que vem da OLT é: ${sinalOlt}`);
 
