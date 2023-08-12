@@ -1,4 +1,4 @@
-const sinalOlt = -5.69
+const sinalOlt = -5.6
 
 console.log(`Sinal que vem da OLT é: ${sinalOlt}`)
 
