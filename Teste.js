@@ -1,4 +1,4 @@
-const readline = require('readline');
+/*const readline = require('readline');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -84,4 +84,4 @@ rl.question("Digite a potência de entrada em dBm: ", function (sinalOlt) {
     });
 });
 
-
+*/
