@@ -1,88 +1,102 @@
-const readline = require('readline');
+function mostrarOpcaoEspecifica() {
+    const qualSpliter = document.getElementById("qualSpliter").value;
+    const opcaoEspecificaDiv = document.getElementById("opcaoEspecifica");
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+    if (qualSpliter === 'balanceado' || qualSpliter === 'desbalanciado') {
+        opcaoEspecificaDiv.innerHTML = `
+            <label for="opcaoEspecifica">Tipo específico de splitter: </label>
+            <select id="opcaoEspecificaSelect">
+                <option value="selecione">Selecione</option>
+                ${qualSpliter === 'balanceado' ? `
+                <option value="1x4">1x4</option>
+                <option value="1x8">1x8</option>
+                <option value="1x16">1x16</option>` : `
+                <option value="5/95">5/95</option>
+                <option value="10/90">10/90</option>
+                <option value="15/85">15/85</option>
+                <option value="20/80">20/80</option>
+                <option value="25/75">25/75</option>
+                <option value="30/70">30/70</option>
+                <option value="40/60">40/60</option>
+                <option value="50/50">50/50</option>`}
+            </select><br><br>
+        `;
+        opcaoEspecificaDiv.style.display = 'block';
+    } else {
+        opcaoEspecificaDiv.innerHTML = '';
+        opcaoEspecificaDiv.style.display = 'none';
+    }
+}
 
-rl.question("Digite a potência de entrada em dBm: ", function (sinalOlt) {
-    rl.question("\nQuantas fusões foram feitas? ", function (quantasFusoes) {
-        const perdaPFusao = 0.05;
-        const calculoDF = perdaPFusao * quantasFusoes;
+function calcular() {
+    const sinalOlt = parseFloat(document.getElementById("sinalOlt").value);
+    const quantasFusoes = parseInt(document.getElementById("quantasFusoes").value);
+    const qualSpliter = document.getElementById("qualSpliter").value;
+    const opcaoEspecifica = document.getElementById("opcaoEspecificaSelect").value;
 
-        rl.question("\nBalanceado, digite 1. \nDesbalanceado, Digite 2. \nQual vai ser o tipo de splitter? ", function (qualSpliter) {
-            console.log(`Sinal que vem da OLT é: ${sinalOlt}`);
-            // spliters balanceados: 1x4, 1x8 e 1x16
-            if (qualSpliter === '1') {
-                rl.question("\nQual é o spltter balanceado? ", function (qualBalanceado) {
-                    if (qualBalanceado === '1x4') {
-                        const calculo1x4 = sinalOlt - calculoDF - 7.30;
-                        console.log(`O sinal do 1x4 ficou: ${calculo1x4}`);
-                    } else if (qualBalanceado === '1x8') {
-                        const calculo1x8 = sinalOlt - calculoDF - 10.50;
-                        console.log(`O sinal do 1x8 ficou: ${calculo1x8}`);
-                    } else if (qualBalanceado === '1x16') {
-                        const calculo1x16 = sinalOlt - calculoDF - 13.70;
-                        console.log(`O sinal do 1x16 ficou: ${calculo1x16}`);
-                    } else {
-                        console.log("Erro!");
-                    }
+    let perdaDF = 0.05 * quantasFusoes;
 
-                    rl.close(); // Fechar aqui dentro, após o final do if
-                });
-                // spliters desbalanceados: 5/95, 10/90, 15/85, 20/80, 25/75, 30/70, 40/60 e 50/50
-            } else if (qualSpliter === '2') {
-                rl.question("\nQual é o spltter desbalanceado? ", function (qualDesbalanciado) {
-                    
-                    if (qualDesbalanciado === '5/95') {
-                        const calculo5 = sinalOlt - calculoDF - 14.60
-                        const calculo95 = sinalOlt - calculoDF - 0.50
-                        console.log(`O sinal de saida do 5% é: ${calculo5}.`)
-                        console.log(`O sinal de saida do 95% é: ${calculo95}.`)
-                    } else if (qualDesbalanciado === '10/90') {
-                        const calculo10 = sinalOlt - calculoDF - 11.00
-                        const calculo90 = sinalOlt - calculoDF - 0.70
-                        console.log(`O sinal de saida do 10% é: ${calculo10}.`)
-                        console.log(`O sinal de saida do 90% é: ${calculo90}.`)
-                    } else if (qualDesbalanciado === '15/85') {
-                        const calculo15 = sinalOlt - calculoDF - 9.60
-                        const calculo85 = sinalOlt - calculoDF - 1.00
-                        console.log(`O sinal de saida do 15% é: ${calculo15}.`)
-                        console.log(`O sinal de saida do 85% é: ${calculo85}.`)
-                    } else if (qualDesbalanciado === '20/80') {
-                        const calculo20 = sinalOlt - calculoDF - 7.90
-                        const calculo80 = sinalOlt - calculoDF - 1.40
-                        console.log(`O sinal de saida do 20% é: ${calculo20}.`)
-                        console.log(`O sinal de saida do 80% é: ${calculo80}.`)
-                    } else if (qualDesbalanciado === '25/75') {
-                        const calculo25 = sinalOlt - calculoDF - 6.95
-                        const calculo75 = sinalOlt - calculoDF - 1.70
-                        console.log(`O sinal de saida do 25% é: ${calculo25}.`)
-                        console.log(`O sinal de saida do 75% é: ${calculo75}.`)
-                    } else if (qualDesbalanciado === '30/70') {
-                        const calculo30 = sinalOlt - calculoDF - 6.00
-                        const calculo70 = sinalOlt - calculoDF - 1.90
-                        console.log(`O sinal de saida do 30% é: ${calculo30}.`)
-                        console.log(`O sinal de saida do 70% é: ${calculo70}.`)
-                    } else if (qualDesbalanciado === '40/60') {
-                        const calculo40 = sinalOlt - calculoDF - 4.70
-                        const calculo60 = sinalOlt - calculoDF - 2.70
-                        console.log(`O sinal de saida do 30% é: ${calculo40}.`)
-                        console.log(`O sinal de saida do 70% é: ${calculo60}.`)
-                    } else if (qualDesbalanciado === '50/50') {
-                        const calculo50 = sinalOlt - calculoDF - 3.54
-                        console.log(`O sinal de saida das pernas do 50% é: ${calculo50}.`)
-                    } else {
-                        console.log("Erro!")
-                    }
-                    rl.close(); // Fechar aqui dentro, após o final do if/else
-                });
-            } else {
-                console.log("Opção inválida!");
-                rl.close(); // Fechar aqui dentro, após o final do if/else
-            }
-        });
-    });
-});
+    let resultadosDiv = document.getElementById("resultadosSplitters");
+    resultadosDiv.innerHTML = ""; // Limpa os resultados anteriores
+
+    if (qualSpliter === 'balanceado') {
+        if (opcaoEspecifica === '1x4') {
+            const calculo1x4 = sinalOlt - perdaDF - 7.30;
+            resultadosDiv.innerHTML += `O sinal do 1x4 ficou: ${calculo1x4}<br>`;
+        } else if (opcaoEspecifica === '1x8') {
+            const calculo1x8 = sinalOlt - perdaDF - 10.50;
+            resultadosDiv.innerHTML += `O sinal do 1x8 ficou: ${calculo1x8}<br>`;
+        } else if (opcaoEspecifica === '1x16') {
+            const calculo1x16 = sinalOlt - perdaDF - 13.70;
+            resultadosDiv.innerHTML += `O sinal do 1x16 ficou: ${calculo1x16}<br>`;
+        } else {
+            resultadosDiv.innerHTML += "Erro!<br>";
+        }
+    } else if (qualSpliter === 'desbalanciado') {
+        if (opcaoEspecifica === '5/95') {
+            const calculo5 = sinalOlt - perdaDF - 14.60;
+            const calculo95 = sinalOlt - perdaDF - 0.50;
+            resultadosDiv.innerHTML += `O sinal de saída do 5% é: ${calculo5}.<br>`;
+            resultadosDiv.innerHTML += `O sinal de saída do 95% é: ${calculo95}.<br>`;
+        } else if (opcaoEspecifica === '10/90') {
+            const calculo10 = sinalOlt - perdaDF - 11.00;
+            const calculo90 = sinalOlt - perdaDF - 0.70;
+            resultadosDiv.innerHTML += `O sinal de saída do 10% é: ${calculo10}.<br>`;
+            resultadosDiv.innerHTML += `O sinal de saída do 90% é: ${calculo90}.<br>`;
+        } else if (opcaoEspecifica === '15/85') {
+            const calculo15 = sinalOlt - perdaDF - 9.60;
+            const calculo85 = sinalOlt - perdaDF - 1.00;
+            resultadosDiv.innerHTML += `O sinal de saída do 15% é: ${calculo15}.<br>`;
+            resultadosDiv.innerHTML += `O sinal de saída do 85% é: ${calculo85}.<br>`;
+        } else if (opcaoEspecifica === '20/80') {
+            const calculo20 = sinalOlt - perdaDF - 7.90;
+            const calculo80 = sinalOlt - perdaDF - 1.40;
+            resultadosDiv.innerHTML += `O sinal de saída do 20% é: ${calculo20}.<br>`;
+            resultadosDiv.innerHTML += `O sinal de saída do 80% é: ${calculo80}.<br>`;
+        } else if (opcaoEspecifica === '25/75') {
+            const calculo25 = sinalOlt - perdaDF - 6.95;
+            const calculo75 = sinalOlt - perdaDF - 1.70;
+            resultadosDiv.innerHTML += `O sinal de saída do 25% é: ${calculo25}.<br>`;
+            resultadosDiv.innerHTML += `O sinal de saída do 75% é: ${calculo75}.<br>`;
+        } else if (opcaoEspecifica === '30/70') {
+            const calculo30 = sinalOlt - perdaDF - 6.00;
+            const calculo70 = sinalOlt - perdaDF - 1.90;
+            resultadosDiv.innerHTML += `O sinal de saída do 30% é: ${calculo30}.<br>`;
+            resultadosDiv.innerHTML += `O sinal de saída do 70% é: ${calculo70}.<br>`;
+        } else if (opcaoEspecifica === '40/60') {
+            const calculo40 = sinalOlt - perdaDF - 4.70;
+            const calculo60 = sinalOlt - perdaDF - 2.70;
+            resultadosDiv.innerHTML += `O sinal de saída do 40% é: ${calculo40}.<br>`;
+            resultadosDiv.innerHTML += `O sinal de saída do 60% é: ${calculo60}.<br>`;
+        } else if (opcaoEspecifica === '50/50') {
+            const calculo50 = sinalOlt - perdaDF - 3.54;
+            resultadosDiv.innerHTML += `O sinal de saída das pernas do 50% é: ${calculo50}.<br>`;
+        } else {
+            resultadosDiv.innerHTML += "Erro!<br>";
+        }
+    }
+    resultadosDiv.style.display = 'block'; // Mostra a caixa de resultados
+
+}
 
 
