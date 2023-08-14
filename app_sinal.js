@@ -6,46 +6,34 @@ const rl = readline.createInterface({
 });
 
 rl.question("Digite a potência de entrada em dBm: ", function (sinalOlt) {
-
-
-
-    const perdaPFusao = 0.05
-
     rl.question("\nQuantas fusões foram feitas? ", function (quantasFusoes) {
-
-        const calculoDF = perdaPFusao * quantasFusoes
+        const perdaPFusao = 0.05;
+        const calculoDF = perdaPFusao * quantasFusoes;
 
         rl.question("\nBalanceado, digite 1. \nDesbalanceado, Digite 2. \nQual vai ser o tipo de splitter? ", function (qualSpliter) {
-
-
-
-
-
             console.log(`Sinal que vem da OLT é: ${sinalOlt}`);
-
-            // spliters balanceados: 1x4, 1x8, 1x16
-
+            // spliters balanceados: 1x4, 1x8 e 1x16
             if (qualSpliter === '1') {
                 rl.question("\nQual é o spltter balanceado? ", function (qualBalanceado) {
                     if (qualBalanceado === '1x4') {
-                        const calculo1x4 = sinalOlt - calculoDF - 7.30
-                        console.log(`o sinal do 1x4 ficou: ${calculo1x4}`)
+                        const calculo1x4 = sinalOlt - calculoDF - 7.30;
+                        console.log(`O sinal do 1x4 ficou: ${calculo1x4}`);
                     } else if (qualBalanceado === '1x8') {
-                        const calculo1x8 = sinalOlt - calculoDF - 10.50
-                        console.log(`o sinal do 1x8 ficou: ${calculo1x8}`)
+                        const calculo1x8 = sinalOlt - calculoDF - 10.50;
+                        console.log(`O sinal do 1x8 ficou: ${calculo1x8}`);
                     } else if (qualBalanceado === '1x16') {
-                        const calculo1x16 = sinalOlt - calculoDF - 13.70
-                        console.log(`o sinal do 1x8 ficou: ${calculo1x16}`)
+                        const calculo1x16 = sinalOlt - calculoDF - 13.70;
+                        console.log(`O sinal do 1x16 ficou: ${calculo1x16}`);
                     } else {
-                        console.log("Erro!")
+                        console.log("Erro!");
                     }
-                })
-            }
 
-            // spliters desbalanciados: 5/95, 10/90, 15/85, 20/80, 25/75, 30/70, 40/60, 50/50
-
-            if (qualSpliter === '2') {
+                    rl.close(); // Fechar aqui dentro, após o final do if
+                });
+                // spliters desbalanceados: 5/95, 10/90, 15/85, 20/80, 25/75, 30/70, 40/60 e 50/50
+            } else if (qualSpliter === '2') {
                 rl.question("\nQual é o spltter desbalanceado? ", function (qualDesbalanciado) {
+                    
                     if (qualDesbalanciado === '5/95') {
                         const calculo5 = sinalOlt - calculoDF - 14.60
                         const calculo95 = sinalOlt - calculoDF - 0.50
@@ -87,11 +75,14 @@ rl.question("Digite a potência de entrada em dBm: ", function (sinalOlt) {
                     } else {
                         console.log("Erro!")
                     }
-                    rl.close();
-                })
+                    rl.close(); // Fechar aqui dentro, após o final do if/else
+                });
+            } else {
+                console.log("Opção inválida!");
+                rl.close(); // Fechar aqui dentro, após o final do if/else
             }
-
-            rl.close();
-        })
-    })
+        });
+    });
 });
+
+
