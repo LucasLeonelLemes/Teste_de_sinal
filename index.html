@@ -112,6 +112,26 @@
         #conectorDireito {
             right: -10px;
         }
+
+        .sugestao-box {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+
+        #resultadosSugeridos {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            font-weight: bold;
+            display: none;
+            position: relative;
+        }
     </style>
 
 </head>
@@ -137,9 +157,12 @@
         <p id="resultado" class="resultado-exibido"></p>
 
     </div>
-
-
+    <div class="sugestao-box" id="sugestaoBox"></div>
+    <h2>Sugestões</h2>
+    <div id="resultadosSugeridos"></div>
     <script src="app_sinal.js"></script>
+    <script src="sugestaoDeSpliter.js"></script>
 </body>
+
 
 </html>

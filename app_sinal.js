@@ -96,7 +96,73 @@ function calcular() {
         }
     }
     resultadosDiv.style.display = 'block'; // Mostra a caixa de resultados
-
+    mostrarSugestoesSplitters(sinalOlt, perdaDF); // Chamada para calcular sugestões
 }
+function mostrarSugestoesSplitters() {
+    const resultadosDiv = document.getElementById("resultadosSplitters");
+    const sinalPrincipal = parseFloat(resultadosDiv.textContent.split(":")[1]);
+    const perdaInicial = 0.05 * parseInt(document.getElementById("quantasFusoes").value);
+    
+
+    const sugestaoBox = document.getElementById("sugestaoBox");
+    const resultadosSugeridosDiv = document.getElementById("resultadosSugeridos");
+
+    sugestaoBox.innerHTML = ""; // Limpa as sugestões anteriores
+    resultadosSugeridosDiv.innerHTML = ""; // Limpa os resultados anteriores
+
+    const splitters = [
+        { nome: "1x4", perda: 7.30 },
+        { nome: "1x8", perda: 10.50 },
+        { nome: "1x16", perda: 13.70 },
+        { nome: "5/95", perda: { perna1: 14.60, perna2: 0.50 } },
+        { nome: "10/90", perda: { perna1: 11.00, perna2: 0.70 } },
+        { nome: "15/85", perda: { perna1: 9.60, perna2: 1.00 } },
+        { nome: "20/80", perda: { perna1: 7.90, perna2: 1.40 } },
+        { nome: "25/75", perda: { perna1: 6.95, perna2: 1.70 } },
+        { nome: "30/70", perda: { perna1: 6.00, perna2: 1.90 } },
+        { nome: "40/60", perda: { perna1: 4.70, perna2: 2.70 } },
+        { nome: "50/50", perda: { perna1: 3.54, perna2: 3.54 } }
+    ];
+
+    for (const splitter of splitters) {
+        const perdaSplitter = typeof splitter.perda === "object"
+            ? Math.max(splitter.perda.perna1, splitter.perda.perna2)
+            : splitter.perda;
+
+        const sinalFinal = sinalPrincipal - perdaSplitter;
+
+        if (sinalFinal >= -19.99 && sinalFinal <= 5) {
+            const sugestao = document.createElement("p");
+            //sugestao.textContent = `Você pode adicionar um ${splitter.nome} após este splitter.`;
+            sugestaoBox.appendChild(sugestao);
+
+            if (typeof splitter.perda === "object") {
+                const perdaPerna1 = sinalPrincipal - splitter.perda.perna1;
+                const perdaPerna2 = sinalPrincipal - splitter.perda.perna2;
+                const resultadoSugeridoPerna1 = document.createElement("p");
+                resultadoSugeridoPerna1.textContent = `Sinal de saída na perna 1 do ${splitter.nome}: ${perdaPerna1.toFixed(2)} dBm.`;
+                resultadosSugeridosDiv.appendChild(resultadoSugeridoPerna1);
+
+                const resultadoSugeridoPerna2 = document.createElement("p");
+                resultadoSugeridoPerna2.textContent = `Sinal de saída na perna 2 do ${splitter.nome}: ${perdaPerna2.toFixed(2)} dBm.`;
+                resultadosSugeridosDiv.appendChild(resultadoSugeridoPerna2);
+            } else {
+                const resultadoSugerido = document.createElement("p");
+                resultadoSugerido.textContent = `O sinal após adicionar um ${splitter.nome} é: ${sinalFinal.toFixed(2)} dBm`;
+                resultadosSugeridosDiv.appendChild(resultadoSugerido);
+            }
+        }
+    }
+
+    if (sugestaoBox.childElementCount > 0) {
+        sugestaoBox.style.display = "block"; // Mostra a caixa de sugestões apenas se houver sugestões
+    } else {
+        sugestaoBox.style.display = "none"; // Oculta a caixa de sugestões se não houver sugestões
+    }
+    resultadosSugeridosDiv.style.display = "block"; // Mostra a caixa de resultados sugeridos
+}
+
+
+
 
 
