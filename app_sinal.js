@@ -96,13 +96,15 @@ function calcular() {
         }
     }
     resultadosDiv.style.display = 'block'; // Mostra a caixa de resultados
-    mostrarSugestoesSplitters(sinalOlt, perdaDF); // Chamada para calcular sugestões
 }
+
+
+
 function mostrarSugestoesSplitters() {
     const resultadosDiv = document.getElementById("resultadosSplitters");
     const sinalPrincipal = parseFloat(resultadosDiv.textContent.split(":")[1]);
     const perdaInicial = 0.05 * parseInt(document.getElementById("quantasFusoes").value);
-    
+
 
     const sugestaoBox = document.getElementById("sugestaoBox");
     const resultadosSugeridosDiv = document.getElementById("resultadosSugeridos");
@@ -154,11 +156,11 @@ function mostrarSugestoesSplitters() {
         }
     }
 
-    if (sugestaoBox.childElementCount > 0) {
+    /*if (sugestaoBox.childElementCount > 0) {
         sugestaoBox.style.display = "block"; // Mostra a caixa de sugestões apenas se houver sugestões
     } else {
         sugestaoBox.style.display = "none"; // Oculta a caixa de sugestões se não houver sugestões
-    }
+    }*/
     resultadosSugeridosDiv.style.display = "block"; // Mostra a caixa de resultados sugeridos
 }
 
