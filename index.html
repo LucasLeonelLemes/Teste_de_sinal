@@ -29,6 +29,11 @@
             margin-bottom: 20px;
         }
 
+        h2 {
+            font-size: 1em;
+            text-align: right;
+        }
+
         label {
             font-weight: bold;
             display: block;
@@ -50,6 +55,7 @@
 
         button {
             background-color: #007bff;
+            margin-top: 8px;
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -115,7 +121,7 @@
 
         .sugestao-box {
             margin-top: 20px;
-            padding: 15px;
+            padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
             background-color: #f9f9f9;
@@ -139,6 +145,7 @@
 <body>
     <div class="container">
         <h1>Calculadora de Sinal</h1>
+        <h2>By Lucas Santos</h2>
         <label for="sinalOlt">Potência de entrada (dBm): </label>
         <input type="number" id="sinalOlt"><br><br>
         <label for="quantasFusoes">Quantidade de fusões: </label>
@@ -155,10 +162,15 @@
         <button onclick="calcular()">Calcular</button>
         <div id="resultadosSplitters" class="resultado-exibido"></div>
         <p id="resultado" class="resultado-exibido"></p>
-        <button onclick="mostrarSugestoesSplitters()">Sugestões</button>
+
+        <button onclick="mostrarSugestoesSplittersSuperior()">Sugestões para a perna superior ou balanceado</button>
+        <button onclick="mostrarSugestoesSplittersInferior()">Sugestões para a perna inferior</button>
+        <div class="sugestao-box" id="sugestaoBox"></div>
         <p id="resultadosSugeridos" class="resultadosSugeridos"></p>
         <div id="resultadosSugeridos" class="resultadosSugeridos"></div>
-        <div class="sugestao-box" id="sugestaoBox"></div>
+
+
+
 
     </div>
 
