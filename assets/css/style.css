@@ -11,7 +11,7 @@ body {
     padding: 20px;
     background-color: #ffffff;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -47,6 +47,7 @@ select {
 
 button {
     background-color: #007bff;
+    font-weight: bold;
     margin: auto;
     margin-top: 8px;
     color: #fff;
