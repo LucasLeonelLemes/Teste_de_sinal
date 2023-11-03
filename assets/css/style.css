@@ -124,7 +124,7 @@ button:hover {
 }
 
 #resultadosSugeridos {
-    margin-top: 20px;
+    margin-top: 20px 49px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
