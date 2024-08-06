@@ -10,9 +10,9 @@ body {
     max-width: 500px;
     padding: 20px;
     background-color: #ffffff;
-    border: 1px solid #ccc;
+    border: 5px solid #000000;
     border-radius: 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 16px 12px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -34,15 +34,15 @@ label {
 
 input[type="number"] {
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    border: 2px solid #000000;
+    border-radius: 15px;
 }
 
 select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    border: 2px solid #000000;
+    border-radius: 15px;
 }
 
 button {
@@ -53,13 +53,13 @@ button {
     color: #fff;
     padding: 10px 20px;
     border: none;
-    border-radius: 3px;
+    border-radius:15px;
     cursor: pointer;
     display: block;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #aac1d9;
 }
 
 #resultado {
