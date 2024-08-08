@@ -85,3 +85,49 @@ rl.question("Digite a potência de entrada em dBm: ", function (sinalOlt) {
 });
 
 */
+
+
+
+const arrays = ['Lucas', 'Santos', 27, 'Gramado']
+
+
+const nome = arrays[0]
+const sobrenome = arrays[1]
+const idade = arrays[2]
+const ondeMora = arrays[3]
+
+
+
+
+
+
+
+if  (nome === arrays[0]) {
+    console.log(`Meu nome e: ${arrays[0]}`)
+}else {
+    console.log('ERROR')
+}
+
+if  (sobrenome === arrays[1]) {
+    console.log(`Meu sobrenome e: ${arrays[1]}`)
+}else {
+    console.log('ERROR')
+}
+
+if  (idade === arrays[2]) {
+    console.log(`Minha idade e: ${arrays[2]} anos`)
+}else {
+    console.log('ERROR')
+}
+
+if  (ondeMora === arrays[3]) {
+    console.log(`Moro em: ${arrays[3]}`)
+}else {
+    console.log('ERROR')
+}
+
+
+
+
+
+

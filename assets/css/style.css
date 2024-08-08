@@ -28,21 +28,27 @@ h2 {
 
 label {
     font-weight: bold;
-    display: block;
+    display: flex;
     margin-bottom: 8px;
+    align-items: center;
+    flex-direction: column;
 }
 
 input[type="number"] {
     padding: 10px;
     border: 2px solid #000000;
     border-radius: 15px;
+    margin: auto;
+    display: flex;
 }
 
 select {
-    width: 100%;
+    width: auto;
     padding: 10px;
     border: 2px solid #000000;
     border-radius: 15px;
+    margin: auto;
+    display: flex;
 }
 
 button {
