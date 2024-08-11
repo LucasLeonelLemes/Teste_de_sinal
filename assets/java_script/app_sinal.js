@@ -30,66 +30,66 @@ function mostrarOpcaoEspecifica() {
 
 function calcular() {
     const sinalOlt = parseFloat(document.getElementById("sinalOlt").value);
-    const quantasFusoes = parseInt(document.getElementById("quantasFusoes").value);
+    //const quantasFusoes = parseInt(document.getElementById("quantasFusoes").value); retirado porque o valor da perda por fusao estava agragando muito valor e nao dando a medicao correta
     const qualSpliter = document.getElementById("qualSpliter").value;
     const opcaoEspecifica = document.getElementById("opcaoEspecificaSelect").value;
 
-    let perdaDF = 0.05 * quantasFusoes;
+   
 
     let resultadosDiv = document.getElementById("resultadosSplitters");
     resultadosDiv.innerHTML = ""; // Limpa os resultados anteriores
 
     if (qualSpliter === 'balanceado') {
         if (opcaoEspecifica === '1x4') {
-            const calculo1x4 = sinalOlt - perdaDF - 7.30;
+            const calculo1x4 = sinalOlt - 7.30;
             resultadosDiv.innerHTML += `O sinal do 1x4 ficou: ${calculo1x4}<br>`;
         } else if (opcaoEspecifica === '1x8') {
-            const calculo1x8 = sinalOlt - perdaDF - 10.50;
+            const calculo1x8 = sinalOlt - 10.50;
             resultadosDiv.innerHTML += `O sinal do 1x8 ficou: ${calculo1x8}<br>`;
         } else if (opcaoEspecifica === '1x16') {
-            const calculo1x16 = sinalOlt - perdaDF - 13.70;
+            const calculo1x16 = sinalOlt - 13.70;
             resultadosDiv.innerHTML += `O sinal do 1x16 ficou: ${calculo1x16}<br>`;
         } else {
             resultadosDiv.innerHTML += "Erro!<br>";
         }
     } else if (qualSpliter === 'desbalanciado') {
         if (opcaoEspecifica === '5/95') {
-            const calculo5 = sinalOlt - perdaDF - 14.60;
-            const calculo95 = sinalOlt - perdaDF - 0.50;
+            const calculo5 = sinalOlt - 14.60;
+            const calculo95 = sinalOlt - 0.50;
             resultadosDiv.innerHTML += `O sinal de saída do 5% é: ${calculo5}.<br>`;
             resultadosDiv.innerHTML += `O sinal de saída do 95% é: ${calculo95}.<br>`;
         } else if (opcaoEspecifica === '10/90') {
-            const calculo10 = sinalOlt - perdaDF - 11.00;
-            const calculo90 = sinalOlt - perdaDF - 0.70;
+            const calculo10 = sinalOlt - 11.00;
+            const calculo90 = sinalOlt - 0.70;
             resultadosDiv.innerHTML += `O sinal de saída do 10% é: ${calculo10}.<br>`;
             resultadosDiv.innerHTML += `O sinal de saída do 90% é: ${calculo90}.<br>`;
         } else if (opcaoEspecifica === '15/85') {
-            const calculo15 = sinalOlt - perdaDF - 9.60;
-            const calculo85 = sinalOlt - perdaDF - 1.00;
+            const calculo15 = sinalOlt - 9.60;
+            const calculo85 = sinalOlt - 1.00;
             resultadosDiv.innerHTML += `O sinal de saída do 15% é: ${calculo15}.<br>`;
             resultadosDiv.innerHTML += `O sinal de saída do 85% é: ${calculo85}.<br>`;
         } else if (opcaoEspecifica === '20/80') {
-            const calculo20 = sinalOlt - perdaDF - 7.90;
-            const calculo80 = sinalOlt - perdaDF - 1.40;
+            const calculo20 = sinalOlt - 7.90;
+            const calculo80 = sinalOlt - 1.40;
             resultadosDiv.innerHTML += `O sinal de saída do 20% é: ${calculo20}.<br>`;
             resultadosDiv.innerHTML += `O sinal de saída do 80% é: ${calculo80}.<br>`;
         } else if (opcaoEspecifica === '25/75') {
-            const calculo25 = sinalOlt - perdaDF - 6.95;
-            const calculo75 = sinalOlt - perdaDF - 1.70;
+            const calculo25 = sinalOlt - 6.95;
+            const calculo75 = sinalOlt - 1.70;
             resultadosDiv.innerHTML += `O sinal de saída do 25% é: ${calculo25}.<br>`;
             resultadosDiv.innerHTML += `O sinal de saída do 75% é: ${calculo75}.<br>`;
         } else if (opcaoEspecifica === '30/70') {
-            const calculo30 = sinalOlt - perdaDF - 6.00;
-            const calculo70 = sinalOlt - perdaDF - 1.90;
+            const calculo30 = sinalOlt - 6.00;
+            const calculo70 = sinalOlt - 1.90;
             resultadosDiv.innerHTML += `O sinal de saída do 30% é: ${calculo30}.<br>`;
             resultadosDiv.innerHTML += `O sinal de saída do 70% é: ${calculo70}.<br>`;
         } else if (opcaoEspecifica === '40/60') {
-            const calculo40 = sinalOlt - perdaDF - 4.70;
-            const calculo60 = sinalOlt - perdaDF - 2.70;
+            const calculo40 = sinalOlt - 4.70;
+            const calculo60 = sinalOlt - 2.70;
             resultadosDiv.innerHTML += `O sinal de saída do 40% é: ${calculo40}.<br>`;
             resultadosDiv.innerHTML += `O sinal de saída do 60% é: ${calculo60}.<br>`;
         } else if (opcaoEspecifica === '50/50') {
-            const calculo50 = sinalOlt - perdaDF - 3.54;
+            const calculo50 = sinalOlt - 3.54;
             resultadosDiv.innerHTML += `O sinal de saída das pernas do 50% é: ${calculo50}.<br>`;
         } else {
             resultadosDiv.innerHTML += "Erro!<br>";
@@ -105,7 +105,7 @@ function mostrarSugestoesSplittersSuperior() {
     
     const resultadosDiv = document.getElementById("resultadosSplitters");
     const sinalPrincipal = parseFloat(resultadosDiv.textContent.split(":")[1]);
-    const perdaInicial = 0.05 * parseInt(document.getElementById("quantasFusoes").value);
+    //const perdaInicial = 0.05 * parseInt(document.getElementById("quantasFusoes").value);
 
 
     const sugestaoBox = document.getElementById("sugestaoBox");
@@ -172,7 +172,7 @@ function mostrarSugestoesSplittersSuperior() {
 function mostrarSugestoesSplittersInferior() {
     const resultadosDiv = document.getElementById("resultadosSplitters");
     const sinalPrincipal = parseFloat(resultadosDiv.textContent.split(":")[2]);
-    const perdaInicial = 0.05 * parseInt(document.getElementById("quantasFusoes").value);
+    //const perdaInicial = 0.05 * parseInt(document.getElementById("quantasFusoes").value); retirado porque o valor da perda por fusao estava agragando muito valor e nao dando a medicao correta
 
 
     const sugestaoBox = document.getElementById("sugestaoBox");
