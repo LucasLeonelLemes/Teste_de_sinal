@@ -34,7 +34,7 @@ label {
     flex-direction: column;
 }
 
-input[type="number"] {
+input[type="text"] {
     padding: 10px;
     border: 2px solid #000000;
     border-radius: 15px;
